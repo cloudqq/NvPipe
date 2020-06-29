@@ -39,6 +39,9 @@ set(include_install_dir "include")
 set(project_config "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake")
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
+
+message(${NVIDIA_VIDEO_CODEC_SDK})
+
 set(sdkhelp "Directory where ReadMe.txt from the Video Codec SDK lives.")
 option(NVIDIA_VIDEO_CODEC_SDK ${sdkhelp} "")
 if("${NVIDIA_VIDEO_CODEC_SDK}" STREQUAL "OFF")
@@ -50,7 +53,8 @@ if("${NVIDIA_VIDEO_CODEC_SDK}" STREQUAL "OFF")
     "${PROJECT_BINARY_DIR}/nvEncodeAPI.h"
     COPYONLY)
 else()
-  include_directories(AFTER "${NVIDIA_VIDEO_CODEC_SDK}/Samples/common/inc")
+  include_directories(AFTER "${NVIDIA_VIDEO_CODEC_SDK}/include")
+  #include_directories(AFTER "${NVIDIA_VIDEO_CODEC_SDK}/Samples/common/inc")
   # If we switched from NOT using an extracted SDK (above) to USING an
   # extracted SDK, we might inadvertently pick up the old file.  Make sure
   # it's been cleaned up.

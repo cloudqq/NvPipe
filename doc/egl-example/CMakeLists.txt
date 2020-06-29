@@ -32,11 +32,14 @@ list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR})
 find_package(EGL)
 find_package(GLEW)
 find_package(CUDA)
+find_package(nvpipe)
 
+message(${NVPIPE_LIBRARIES})
 if (EGL_FOUND AND GLEW_FOUND AND CUDA_FOUND)
     add_executable(egl-example egl-example.cpp)
     target_include_directories(egl-example PUBLIC ${EGL_INCLUDE_DIR} ${GLEW_INCLUDE_DIRS} ${CUDA_INCLUDE_DIRS})
-    target_link_libraries(egl-example PUBLIC ${EGL_LIBRARIES} ${GLEW_LIBRARIES} ${CUDA_LIBRARIES} ${NVPIPE})
+    target_link_libraries(egl-example PUBLIC ${EGL_LIBRARIES} ${GLEW_LIBRARIES} ${CUDA_LIBRARIES} ${NVPIPE_LIBRARIES})
+    #target_link_libraries(egl-example PUBLIC ${EGL_LIBRARIES} ${GLEW_LIBRARIES} ${CUDA_LIBRARIES} ${NVPIPE})
 endif()
 
 
